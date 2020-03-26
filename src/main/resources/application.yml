@@ -1,0 +1,20 @@
+kafka:
+  topic: my_topic
+server:
+  port: 8081
+spring:
+  application:
+    name: kafka-consumer-api
+  data:
+    mongodb:
+      host: localhost
+      port: 27018
+      username: mongoadmin
+      password: secret
+      database: events
+      authentication-database: events
+  kafka:
+    consumer:
+      group-id: group-id
+      auto-offset-reset: earliest
+    bootstrap-servers: localhost:9092

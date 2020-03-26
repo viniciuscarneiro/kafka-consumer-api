@@ -1,0 +1,25 @@
+version: '3'
+services:
+  mongodb:
+    image: 'bitnami/mongodb:4.2'
+    ports:
+      - "27018:27017"
+    environment:
+      - MONGODB_USERNAME=mongoadmin
+      - MONGODB_PASSWORD=secret
+      - MONGODB_DATABASE=events
+  mongo-express:
+    image: mongo-express
+    ports:
+      - "8086:8086"
+    environment:
+      - ME_CONFIG_MONGODB_SERVER=mongodb
+      - ME_CONFIG_MONGODB_PORT=27017
+      - ME_CONFIG_MONGODB_ENABLE_ADMIN=false
+      - ME_CONFIG_MONGODB_AUTH_DATABASE=events
+      - ME_CONFIG_MONGODB_AUTH_USERNAME=mongoadmin
+      - ME_CONFIG_MONGODB_AUTH_PASSWORD=secret
+      - ME_CONFIG_BASICAUTH_USERNAME=admin
+      - ME_CONFIG_BASICAUTH_PASSWORD=admin
+    depends_on:
+      - mongodb
